@@ -12,9 +12,8 @@
 
 function masterPig(){
     var testString = document.getElementById("userInput").value
-    var lowerCase = testString.toLowerCase()
     var vowels = ['a', 'e', 'i', 'o', 'u']
-    let splitSentence = lowerCase.split(' ')
+    let splitSentence = testString.split(' ')
     var way = ['w', 'a', 'y']
     var ay = ['a', 'y']
     //
@@ -65,20 +64,6 @@ function masterPig(){
                         let c = a.concat(b)
                         let pigQU = (c.concat(way)).join('')
                         pigArray.push(pigQU)
-
-                    } else if (vowels.includes(word[i])===false && word.includes('y') ) {
-                        let indexY = 0
-                        if (word[i]=== 'y'){
-                            indexY = i
-                            let a = word.splice(indexY,word.length)
-                            let b = word.splice(0,indexY)
-                            let c = a.concat(b)
-                            let pigY = (c.concat(ay)).join('')
-                            pigArray.push(pigY)
-                            break
-                        }
-
-
                     //checks for rest
                     } else {
                         let indexU = 0
@@ -91,11 +76,13 @@ function masterPig(){
                             pigArray.push(pigVowel)
                             break
                         }
+
                     }
+
                 }
             }
         }
-        return pigArray.join(' ')
+        return pigArray
     }
     return document.getElementById("reply").innerHTML = piglatin(finalArray)
 }

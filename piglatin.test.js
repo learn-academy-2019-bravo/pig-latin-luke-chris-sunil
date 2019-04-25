@@ -10,10 +10,11 @@
 // - For words beginning with "y", treat "y" as a consonant.
 
 
-var testString = 'squeal this is a test of pig latin qiaudfg'
+var testString = "this is a test"
 var vowels = ['a', 'e', 'i', 'o', 'u']
 let splitSentence = testString.split(' ')
 var way = ['w', 'a', 'y']
+var ay = ['a', 'y']
 //
 // describe("splitter", () => {
 //     test ("returns array of strings within array of words", () => {
@@ -48,7 +49,7 @@ function piglatin(arr1) {
 
         //checks if word starts with vowel and adds 'way' to the end
         if (vowels.includes(word[0])){
-            let pigVowel = word.concat(way)
+            let pigVowel = (word.concat(way)).join('')
             pigArray.push(pigVowel);
         }
         else {
@@ -59,32 +60,31 @@ function piglatin(arr1) {
                     let a = word.splice(indexU,word.length)
                     let b = word.splice(0,indexU)
                     let c = a.concat(b)
-                    let pigQU = c.concat(way)
+                    let pigQU = (c.concat(way)).join('')
                     pigArray.push(pigQU)
-
+                //checks for rest
                 } else {
-                    
+                    let indexU = 0
+                    if (vowels.includes(word[i])){
+                        indexU = i
+                        let a = word.splice(indexU,word.length)
+                        let b = word.splice(0,indexU)
+                        let c = a.concat(b)
+                        let pigVowel = (c.concat(ay)).join('')
+                        pigArray.push(pigVowel)
+                        break
+                    }
 
-                    // if(word[i] === 'a' || word[i] === 'e' || word[i] === 'i' || word[i] === 'o' || word[i] === 'u') {
-                    //     // var d = word.indexOf(word[i])
-                    //     console.log(word[i]);
-                    // }
-                        // for(let j=0; j<word.length; j++) {
-                        //     if (vowels[j].includes(word) = false) {
-                        //         let z = []
-                        //         let x = z.push(word.shift(word[j]))
-                        //
-                        //         console.log(z);
-                        //     }
-                        }
                 }
 
             }
-        }return pigArray
+        }return pigArray.join(' ')
+
     }
 }
 
-console.log(piglatin(finalArray));
 
+var finalArray = piglatin(finalArray)
+console.log(finalArray);
 
     //if (word.includes(['q','u']) ){
